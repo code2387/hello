@@ -1,0 +1,46 @@
+#include<stdio.h>
+int main()
+{
+    
+    int roll_number,i,num,j,x=0;
+    int marks[5];
+    float total,p;
+    char name[10];
+    FILE *fp;
+    fp=fopen("C:\\progw.txt","w");
+    if(fp==NULL)
+    {
+        printf("Unable to open the file");
+        return 0;
+    }
+    for(i=0;i<5;i++)
+    {
+        total=0;
+        printf("Enter the name of the student: ");
+        scanf("%s",&name);
+        fprintf(fp,"Name: %s\n",name);
+        printf("Enter the roll number of the student: ");
+        x=scanf("%d",&roll_number);
+        if(x!=1)
+        {
+            printf("Invalid Input");
+            return 0;
+        }
+        fprintf(fp,"Roll number: %d\n",roll_number);
+        
+        for(j=0;j<5;j++)
+        {
+            printf("Enter the marks of subject %d: ",j+1);
+            x=scanf("%d",&marks[j]);
+            if(x!=1)
+            {
+                printf("Invalid Input");
+                return 0;
+            }
+            fprintf(fp,"Marks of subject %d: %2d\n",j+1,marks[j]);
+            total=total+marks[j];   
+        }
+        fprintf(fp,"Percentage: %.2f\n\n",total/5);
+    }
+        fclose(fp);
+}
